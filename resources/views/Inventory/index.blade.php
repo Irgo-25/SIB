@@ -18,8 +18,8 @@
             </a>
         </div>
     </div>
-    <div class="relative overflow-x-auto shadow-md mr-4 rounded-xl">
-        <table class="w-full mt-3 text-left ">
+    <div class="relative overflow-x-auto shadow-lg mr-4 rounded-md">
+        <table class="w-full table-auto">
             <thead class="text-xs text-center text-black uppercase bg-[#fb8500]">
                 <tr>
                     <th scope="col" class="px-4 py-4">
