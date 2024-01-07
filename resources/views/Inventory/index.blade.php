@@ -3,7 +3,7 @@
 @section('content')
     <div class="flex justify-between">
         <div>
-            <h1 class="text-3xl m-2">Inventory Barang</h1>
+            <h1 class="text-3xl m-2 font-[500]">Inventory Barang</h1>
         </div>
         <div class="mx-2 my-4">
             <a class="max-w-min p-2 bg-[#ffb703] rounded-md flex items-center mr-4 border-2 divide-x-2 border-dashed"

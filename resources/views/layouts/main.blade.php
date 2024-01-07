@@ -9,7 +9,7 @@
     @vite('resources/css/app.css', 'resources/js/app.js')
 </head>
 
-<body>
+<body class="font-Sen">
     {{-- Navbar --}}
     <nav class="bg-[#023047] border-b-4 border-y-[#219ebc] rounded-b-md fixed z-40 top-0 w-full shadow-lg">
         @include('partials.header')
