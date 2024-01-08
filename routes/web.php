@@ -30,4 +30,5 @@ Route::get('Dashboard', function () {
 // });
 
 Route::get('/', [LoginController::class, 'login']);
+
 Route::resource('Inventory', InventoryController::class);

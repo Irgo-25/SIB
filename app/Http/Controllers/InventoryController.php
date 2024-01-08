@@ -47,7 +47,6 @@ class InventoryController extends Controller
             compact('kode_barang'),
             [
                 'title' => 'Tambah Inventory',
-                'classes' => Inventory::get()
             ]
         );
     }
@@ -89,9 +88,12 @@ class InventoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($kode_barang)
     {
-        //
+        return view('Inventory.edit', [
+            'title' => 'Edit Inventory',
+            'row' => Inventory::find($kode_barang)
+        ]);
     }
 
     /**
@@ -101,9 +103,11 @@ class InventoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $kode_barang)
     {
-        //
+        $request->validate([
+
+        ]);
     }
 
     /**

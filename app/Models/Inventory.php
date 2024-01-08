@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Inventory extends Model
 {
     use HasFactory;
-    var $data;
     protected $table = 'inventories';
-
+    protected $primaryKey = 'kode_barang';
+    public $incrementing = false;
     protected $fillable = [
         'kode_barang', 'nama_barang', 'penempatan', 'qr_code'
     ];
