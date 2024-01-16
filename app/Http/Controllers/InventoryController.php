@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inventory;
-use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
-use Symfony\Contracts\Service\Attribute\Required;
+
 
 class InventoryController extends Controller
 {
@@ -59,15 +58,14 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'kode_barang' => ['required', 'string', 'max:20'],
+        $validateData = $request->validate([
+            'kode_barang' => ['required', 'unique:inventories', 'string', 'max:20'],
             'nama_barang' => ['required', 'string', 'max:255'],
             'penempatan' => ['required', 'string', 'max:255'],
             'qr_code' => ['required', 'string', 'max:255'],
         ]);
 
-        $data = $request->all();
-        Inventory::create($data);
+        Inventory::create($validateData);
         return redirect()->route('Inventory.index');
     }
 
@@ -105,9 +103,13 @@ class InventoryController extends Controller
      */
     public function update(Request $request, $kode_barang)
     {
-        $request->validate([
-
+        $validateData = $request->validate([
+            'nama_barang' => ['string', 'required', 'max:255'],
+            'penempatan' => ['string', 'required', 'max:255'],
+            'qr_code' => ['string', 'required', 'max:255'],
         ]);
+        Inventory::find($kode_barang)->update($validateData);
+        return redirect()->route('Inventory.index');
     }
 
     /**
