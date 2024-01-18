@@ -73,8 +73,8 @@
                             <form action="{{ route('Inventory.destroy', $row->kode_barang) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button class="mr-2 mt-2 p-1 bg-[#ae2012] rounded-lg"
-                                    data-popover-target="delete-popover"data-confirm-delete="true">
+                                <button data-confirm-button="true" class="mr-2 mt-2 p-1 bg-[#ae2012] rounded-lg"
+                                    data-popover-target="delete-popover">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#fff"
                                         class="w-7 h-7">
                                         <path d="M2 3a1 1 0 00-1 1v1a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1H2z" />

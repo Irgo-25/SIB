@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Inventory;
 use Illuminate\Http\Request;
-use Alert;
 
 
 class InventoryController extends Controller
@@ -18,11 +17,9 @@ class InventoryController extends Controller
     {
         $query = Inventory::paginate(15);
         $query = Inventory::latest()->get();
-        $title = 'Delete Data Inventory!!';
-        $text = 'Are you sure want to delete..?';
-        confirmDelete([$title, $text]);
-        return view('Inventory.index', compact('query'), [
-            'title' => 'Inventory',
+
+        return view('Inventory.index', [
+            'title_web' => 'Inventory',
             'query' => $query,
         ]);
     }
@@ -48,7 +45,7 @@ class InventoryController extends Controller
             'Inventory.create',
             compact('kode_barang'),
             [
-                'title' => 'Tambah Inventory',
+                'title_web' => 'Tambah Inventory',
             ]
         );
     }
@@ -69,7 +66,7 @@ class InventoryController extends Controller
         ]);
 
         Inventory::create($validateData);
-        return redirect()->route('Inventory.index')->with('toast_success', 'Inventory Created Successfully!');;
+        return redirect()->route('Inventory.index');
     }
 
     /**
@@ -92,7 +89,7 @@ class InventoryController extends Controller
     public function edit($kode_barang)
     {
         return view('Inventory.edit', [
-            'title' => 'Edit Inventory',
+            'title_web' => 'Edit Inventory',
             'row' => Inventory::find($kode_barang)
         ]);
     }
@@ -124,6 +121,6 @@ class InventoryController extends Controller
     public function destroy($kode_barang)
     {
         Inventory::find($kode_barang)->destroy($kode_barang);
-        return redirect()->route('Inventory.index')->with('toast_success', 'Data Inventory berhasil di hapus');
+        return redirect()->route('Inventory.index');
     }
 }
