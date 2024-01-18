@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Inventory;
 use Illuminate\Http\Request;
+use Alert;
 
 
 class InventoryController extends Controller
@@ -17,10 +18,12 @@ class InventoryController extends Controller
     {
         $query = Inventory::paginate(15);
         $query = Inventory::latest()->get();
-        return view('Inventory.index', [
+        $title = 'Delete Data Inventory!!';
+        $text = 'Are you sure want to delete..?';
+        confirmDelete([$title, $text]);
+        return view('Inventory.index', compact('query'), [
             'title' => 'Inventory',
             'query' => $query,
-
         ]);
     }
 
@@ -66,7 +69,7 @@ class InventoryController extends Controller
         ]);
 
         Inventory::create($validateData);
-        return redirect()->route('Inventory.index');
+        return redirect()->route('Inventory.index')->with('toast_success', 'Inventory Created Successfully!');;
     }
 
     /**
@@ -118,8 +121,9 @@ class InventoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($kode_barang)
     {
-        //
+        Inventory::find($kode_barang)->destroy($kode_barang);
+        return redirect()->route('Inventory.index')->with('toast_success', 'Data Inventory berhasil di hapus');
     }
 }
