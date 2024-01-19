@@ -22,8 +22,7 @@
     </aside>
     <div class="ml-56 mt-24">
         @yield('content')
-
-
+        @include('sweetalert::alert')
     </div>
     @include('partials.footer')
 </body>

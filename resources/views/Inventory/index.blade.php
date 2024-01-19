@@ -2,6 +2,10 @@
 
 @section('content')
     <div class="flex justify-between">
+        @if (session()->has('toast_success, autoClose(5000)'))
+        <div class="ms-3 text-sm font-medium">{{session('toast_success')}}
+        </div>
+        @endif
         <div>
             <h1 class="text-3xl m-2 font-[500]">Inventory Barang</h1>
         </div>

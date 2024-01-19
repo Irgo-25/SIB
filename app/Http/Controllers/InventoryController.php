@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Inventory;
 use Illuminate\Http\Request;
-
+use RealRashid\SweetAlert\Facades\Alert;
+use RealRashid\SweetAlert\Toaster;
 
 class InventoryController extends Controller
 {
@@ -66,7 +67,8 @@ class InventoryController extends Controller
         ]);
 
         Inventory::create($validateData);
-        return redirect()->route('Inventory.index');
+        return redirect()->route('Inventory.index')->withtoast_success('success Add Inventory');
+        
     }
 
     /**
@@ -121,6 +123,6 @@ class InventoryController extends Controller
     public function destroy($kode_barang)
     {
         Inventory::find($kode_barang)->destroy($kode_barang);
-        return redirect()->route('Inventory.index');
+        return redirect()->route('Inventory.index')->withtoast_success('success');
     }
 }
