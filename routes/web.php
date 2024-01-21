@@ -3,6 +3,7 @@
 use App\Models\Inventory;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\InventoryController;
 
@@ -19,7 +20,7 @@ use App\Http\Controllers\InventoryController;
 
 Route::get('Dashboard', function () {
     return view('Beranda', [
-        'title' => 'Dashboard'
+        'title_web' => 'Dashboard'
     ]);
 });
 // Route::get('Inventory', function () {
@@ -31,4 +32,5 @@ Route::get('Dashboard', function () {
 
 Route::get('/', [LoginController::class, 'login']);
 
-Route::resource('Inventory', InventoryController::class);
+Route::resource('inventory', InventoryController::class);
+Route::resource('user', UserController::class);

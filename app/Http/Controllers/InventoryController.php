@@ -16,12 +16,16 @@ class InventoryController extends Controller
      */
     public function index()
     {
-        $query = Inventory::paginate(15);
-        $query = Inventory::latest()->get();
+        // $query = Inventory::paginate(15);
+        $query = Inventory::latest()->paginate(15);
 
-        return view('Inventory.index', [
+        $title = 'Are You Sure..?';
+        $text = "Deleting Inventory";
+        confirmDelete($title, $text);
+        return view('inventory.index', [
             'title_web' => 'Inventory',
             'query' => $query,
+            compact('query'),
         ]);
     }
 
@@ -41,9 +45,9 @@ class InventoryController extends Controller
             $no_urut = (int)substr($ambilKode->kode_barang, 5) + 1;
         }
         $buat_id   = str_pad($no_urut, 6, "0", STR_PAD_LEFT);
-        $kode_barang = "ITR - $buat_id";
+        $kode_barang = "ITR-$buat_id";
         return view(
-            'Inventory.create',
+            'inventory.create',
             compact('kode_barang'),
             [
                 'title_web' => 'Tambah Inventory',
@@ -67,7 +71,7 @@ class InventoryController extends Controller
         ]);
 
         Inventory::create($validateData);
-        return redirect()->route('Inventory.index')->withtoast_success('success Add Inventory');
+        return redirect()->route('inventory.index')->withtoast_success('Success Add Inventory', 'autoClose(5000)');
         
     }
 
@@ -90,7 +94,7 @@ class InventoryController extends Controller
      */
     public function edit($kode_barang)
     {
-        return view('Inventory.edit', [
+        return view('inventory.edit', [
             'title_web' => 'Edit Inventory',
             'row' => Inventory::find($kode_barang)
         ]);
@@ -111,7 +115,7 @@ class InventoryController extends Controller
             'qr_code' => ['string', 'required', 'max:255'],
         ]);
         Inventory::find($kode_barang)->update($validateData);
-        return redirect()->route('Inventory.index');
+        return redirect()->route('inventory.index')->withtoast_success('Success Update Inventory', 'autoClose(5000)');
     }
 
     /**
@@ -123,6 +127,6 @@ class InventoryController extends Controller
     public function destroy($kode_barang)
     {
         Inventory::find($kode_barang)->destroy($kode_barang);
-        return redirect()->route('Inventory.index')->withtoast_success('success');
+        return redirect()->route('inventory.index')->withtoast_success('success');
     }
 }

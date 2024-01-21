@@ -3,7 +3,7 @@
     <div class=" -ml-2 mb-6">
         <h1 class="max-w-min text-3xl inline">Form Inventory Barang</h1>
     </div>
-    <form action="{{ route('Inventory.update', $row->kode_barang) }}" method="POST">
+    <form action="{{ route('inventory.update', $row->kode_barang) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="mb-6 mr-3">

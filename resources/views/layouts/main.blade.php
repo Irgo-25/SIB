@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> {{ $title_web }} </title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{asset('/fontawesome/css/all.min.css')}}">
 </head>
 
 <body class="font-Sen">
@@ -23,6 +24,7 @@
     <div class="ml-56 mt-24">
         @yield('content')
         @include('sweetalert::alert')
+        @include('vendor.sweetalert.alert')
     </div>
     @include('partials.footer')
 </body>
