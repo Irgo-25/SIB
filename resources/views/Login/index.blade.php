@@ -10,7 +10,7 @@
 </head>
 
 <body class="font-Sen">
-    <div class="bg-bg-ncf fixed bg-center w-screen h-screen blur-sm">
+    <div class="bg-bg-nc fixed bg-center w-screen h-screen blur-sm">
     </div>
     <div class="absolute flex items-center justify-center right-1/2 top-[15rem] space-x-3 ">
         <div class="text-3xl font-[600] ml-2 ">
@@ -22,7 +22,9 @@
         </div>
         <div class="p-6 max-w-sm mx-auto bg-white rounded-md space-y-3">
             <div class="text-2xl font-[500] text-center">Silahkan Login</div>
-            <form class=" space-y-3" action="">
+            <form class=" space-y-3" method="post" action="{{route('login.auth')}}">
+                @csrf
+                @method('POST')
                 <div class="font-medium">
                     <label class="block" for="username">Username</label>
                     <input class="rounded-md border-2 focus:border-red-600 focus:ring-red-600" type="text" name="name" id="username" placeholder="Masukan Username" required >

@@ -31,6 +31,7 @@ Route::get('Dashboard', function () {
 // });
 
 Route::get('/', [LoginController::class, 'login']);
+Route::post('/', [LoginController::class, 'auth'])->name('login.auth');
 
 Route::resource('inventory', InventoryController::class);
 Route::resource('user', UserController::class);
