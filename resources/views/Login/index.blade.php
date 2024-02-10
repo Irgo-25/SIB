@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title_web }}</title>
-    @vite ('resources/css/app.css', 'resources/js/app.js')
+    @vite (['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="font-Sen">
-    <div class="bg-bg-nc fixed bg-center w-screen h-screen blur-sm">
+    <div class="bg-bg-ncf fixed bg-center w-screen h-screen blur-sm">
     </div>
     <div class="absolute flex items-center justify-center right-1/2 top-[15rem] space-x-3 ">
         <div class="text-3xl font-[600] ml-2 ">

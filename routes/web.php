@@ -1,7 +1,4 @@
 <?php
-
-use App\Models\Inventory;
-use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
@@ -17,21 +14,19 @@ use App\Http\Controllers\InventoryController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route Login
+Route::middleware('guest')->get('/', [LoginController::class, 'login'])->name('login');
+// Route untuk Autentikasi saat login
+Route::post('/', [LoginController::class, 'auth'])->name('login.auth');
+// Route Untuk Logout
+Route::middleware('Admin')->post('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('Dashboard', function () {
     return view('Beranda', [
         'title_web' => 'Dashboard'
     ]);
 });
-// Route::get('Inventory', function () {
-//     return view('Inventory');
-// });
-// Route::get('Inventory/create', function () {
-//     return view('Inventory.create');
-// });
-
-Route::get('/', [LoginController::class, 'login']);
-Route::post('/', [LoginController::class, 'auth'])->name('login.auth');
-
-Route::resource('inventory', InventoryController::class);
-Route::resource('user', UserController::class);
+// Route ke controller inventory
+Route::middleware('Admin')->resource('inventory', InventoryController::class);
+// Route ke controller user management
+Route::middleware('Admin')->resource('user', UserController::class);
