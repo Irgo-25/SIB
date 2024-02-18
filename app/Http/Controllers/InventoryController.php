@@ -17,15 +17,15 @@ class InventoryController extends Controller
     public function index()
     {
         // $query = Inventory::paginate(15);
-        $query = Inventory::latest()->paginate(15);
+        $query = Inventory::latest()->paginate(5);
 
-        $title = 'Are You Sure..?';
-        $text = "Deleting Inventory";
+        $title = "Delete Inventory!!";
+        $text = "Are you sure want to delete??";
         confirmDelete($title, $text);
         return view('inventory.index', [
             'title_web' => 'Inventory',
             'query' => $query,
-            compact('query'),
+            compact('query')
         ]);
     }
 
